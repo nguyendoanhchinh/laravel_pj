@@ -19,6 +19,7 @@ class LocationController extends Controller
     public function getLocation(Request $request)
     {
         $get=$request->input();
+
         $html='';
         if ($get['target']=='districts'){
             $province = $this->provinceRepository->findById($get['data']['location_id'],

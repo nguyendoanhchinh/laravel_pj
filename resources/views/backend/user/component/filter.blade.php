@@ -18,7 +18,7 @@
                 <div class="us-flex us-flex-middle">
                     @php
                         $publishArr=['UnPublish','Publish'];
-                         $publish=request('publish')?:old('publish');
+                         $publish=request('publish')?:old('publish') ?:'-1';
                     @endphp
                     <select name="publish" class="form-control mr10 setupSelect2 ">
                         <option value="-1" selected="selected">Chọn tình trạng</option>

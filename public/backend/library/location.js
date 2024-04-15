@@ -17,7 +17,7 @@
     }
     HT.sendDataTagetLocation=(option)=>{
         $.ajax({
-            url:'ajax/location/getLocation',
+            url:'/ajax/location/getLocation',
             type:'GET',
             data:option,
             dataType:'json',
