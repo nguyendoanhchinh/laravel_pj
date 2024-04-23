@@ -24,10 +24,12 @@ class LocationController extends Controller
         if ($get['target']=='districts'){
             $province = $this->provinceRepository->findById($get['data']['location_id'],
             ['code','name'], ['districts']);
+           
             $html=$this->renderHtml($province->districts);
         }elseif ($get['target']=='wards'){
             $district=$this->districtRepository->findById($get['data']['location_id'],
                 ['code','name'], ['wards']);
+               
             $html=$this->renderHtml($district->wards,'[Chọn Phường/Xã]');
 
         }

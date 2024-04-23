@@ -89,6 +89,7 @@ class UserService implements UserServiceInterface
         try {
             $payload[$post['field']] = $post['value'] ;
             $flag=$this->userRepository->updateByWhereIn('id',$post['id'],$payload);
+          
             DB::commit();
             return true;
         }catch (\Exception $e){

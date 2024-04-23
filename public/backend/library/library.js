@@ -24,12 +24,12 @@
                 '_token':_token
             }
             $.ajax({
-                url:'ajax/dashboard/changeStatus',
+                url:'/ajax/dashboard/changeStatus',
                 type:'POST',
                 data:option,
                 dataType:'json',
                 success:function (res){
-                    console.log(res);
+                   
                 },
                 error:function (jqXHR,textStatus,errorThrown){
                     console.log('Lỗi' +textStatus+'' +errorThrown)
@@ -97,22 +97,24 @@
                     '_token':_token
                 }
                     $.ajax({
-                        url:'ajax/dashboard/changeStatusAll',
+                        url:'/ajax/dashboard/changeStatusAll',
                         type:'POST',
                         data:option,
                         dataType:'json',
-                        success:function (res){
-                            if (res.flag==true){
-                                let cssActive1='background-color: rgb(26, 179, 148); border-color: rgb(26, 179, 148); box-shadow: rgb(26, 179, 148) 0px 0px 0px 16.5px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s';
-                                let cssActive2='left: 0px; transition: background-color 0.4s ease 0s, left 0.2s ease 0s;';
-                                if (option.value==1){
-                                    for (let i=0;i<id.length;i++){
-                                        $('.js-switch-'+id[i]).find('span.swswitchery').attr('style',cssActive1).find('smail').attr('style',cssActive2)
-
+                        success: function(res) {
+                            if (res.flag == true) {
+                                let cssActive1 = 'background-color: rgb(26, 179, 148); border-color: rgb(26, 179, 148); box-shadow: rgb(26, 179, 148) 0px 0px 0px 16.5px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s';
+                                let cssActive2 = 'left: 0px; transition: background-color 0.4s ease 0s, left 0.2s ease 0s;';
+                                if (option.value == 1) {
+                                    for (let i = 0; i < id.length; i++) {
+                                        let switchElem = $('.js-switch-' + id[i]);
+                                        switchElem.find('span.swswitchery').attr('style', cssActive1);
+                                        switchElem.find('smail').attr('style', cssActive2);
                                     }
                                 }
                             }
                         },
+                        
                         error:function (jqXHR,textStatus,errorThrown){
                             console.log('Lỗi' +textStatus+'' +errorThrown)
                         }

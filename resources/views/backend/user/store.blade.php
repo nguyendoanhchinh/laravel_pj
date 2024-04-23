@@ -140,7 +140,7 @@
                             <div class="col-lg-6">
                                 <div class="form-row">
                                     <label for="" class="control-label text-left">Quận/Huyện</label>
-                                    <select name="district_id" id="" class="form-control districts setupSelect2 " data-target="wards">
+                                    <select name="district_id" id="" class="form-control districts setupSelect2 location" data-target="wards">
                                         <option value="">[ Chọn Quận/Huyện ]</option>
                                     </select>
                                 </div>
