@@ -28,7 +28,10 @@ class BaseRepository implements BaseRepositoryInterface
     ){
         $query= $this->model->select($column)->where(function ($query) use ($condition){
             if (isset($condition['keyword']) && !empty($condition['keyword']) ){
-                $query->where('name','LIKE','%'.$condition['keyword'].'%');
+                $query->where('name','LIKE','%'.$condition['keyword'].'%')
+                    ->orWhere('email','LIKE','%'.$condition['keyword'].'%')
+                    ->orWhere('address','LIKE','%'.$condition['keyword'].'%')
+                    ->orWhere('phone','LIKE','%'.$condition['keyword'].'%');
             }
         });
         if (!empty($join)){

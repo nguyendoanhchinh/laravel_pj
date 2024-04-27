@@ -5,24 +5,23 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
-use App\Services\Interfaces\UserServiceInterface as UserService;
-use App\Repositories\Interfaces\ProvinceRepositoryInterface as ProvinceRepository;
-use App\Repositories\Interfaces\UserRepositoryInterface as UserRepository;
+use App\Services\Interfaces\UserCatalogueServiceInterface as UserCatalogueService;
+
 use App\Http\Requests\UpdateUserRequest;
 
-class UserController extends Controller
+class UserCatalogueController extends Controller
 {
-    protected  $userService;
-    protected  $provinceRepository;
-    protected  $userRepository;
-    public function __construct(UserService $userService ,ProvinceRepository $provinceRepository, UserRepository $userRepository)
+    protected  $userCatalogueService;
+
+    protected  $userCatalogRepository;
+    public function __construct(UserCatalogueService $userCatalogueService ,)
     {
-        $this->userService=$userService;
-        $this->provinceRepository=$provinceRepository;
-        $this->userRepository=$userRepository;
+        $this->userCatalogueService=$userCatalogueService;
+   
     }
     public function index(Request $request){
-        $users=$this->userService->paginate($request);
+        echo 123; die();
+        $users=$this->userCatalogueService->paginate($request);
         $config=  [
             'js'=>[
                 'backend/js/plugins/switchery/switchery.js',
@@ -37,7 +36,7 @@ class UserController extends Controller
 
         $config['seo']=config('apps.user');
 
-        $template='backend.user.user.index';
+        $template='backend.user.catalogue.index';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -61,7 +60,7 @@ class UserController extends Controller
         ];
         $config['seo']=config('apps.user');
         $config['method']='create';
-        $template='backend.user.user.store';
+        $template='backend.user.catalogue.store';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -71,14 +70,14 @@ class UserController extends Controller
     }
     public function store(StoreUserRequest $request){
 
-        if ($this->userService->create($request)){
+        if ($this->userCatalogueService->create($request)){
             return redirect()->route('user.index')->with('success','Thêm mới thành công');
         }
         return redirect()->route('user.index')->with('error','Thêm mới không thành công');
     }
 
     public  function  edit($id){
-        $user=$this->userRepository->findById($id);
+        $user=$this->userCatalogRepository->findById($id);
 
         $provinces= $this->provinceRepository->all();
         $config=[
@@ -91,7 +90,7 @@ class UserController extends Controller
         ];
         $config['seo']=config('apps.user');
         $config['method']='edit';
-        $template='backend.user.user.store';
+        $template='backend.user.catalogue.store';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -102,7 +101,7 @@ class UserController extends Controller
     }
 
      public  function  update($id,UpdateUserRequest $request){
-         if ($this->userService->update($id, $request)){
+         if ($this->userCatalogueService->update($id, $request)){
              return redirect()->route('user.index')->with('success','Cập nhật thành công');
          }
          return redirect()->route('user.index')->with('error','Cập nhật không thành công');
@@ -110,8 +109,8 @@ class UserController extends Controller
     public  function delete($id){
         $config['seo']=config('apps.user');
 
-        $user=$this->userRepository->findById($id);
-        $template='backend.user.user.delete';
+        $user=$this->userCatalogRepository->findById($id);
+        $template='backend.user.catalogue.delete';
         return view('backend.dashboard.layout',compact(
             'template',
             'config',
@@ -120,7 +119,7 @@ class UserController extends Controller
         ));
     }
     public  function  destroy($id){
-        if ($this->userService->destroy($id)){
+        if ($this->userCatalogueService->destroy($id)){
             return redirect()->route('user.index')->with('success','Xóa bản ghi thành công');
         }
         return redirect()->route('user.index')->with('error','Xóa bản ghi không thành công');

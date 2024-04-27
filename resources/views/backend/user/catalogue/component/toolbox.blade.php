@@ -8,7 +8,7 @@
     <ul class="dropdown-menu dropdown-user">
         <li><a data-field="publish" data-model="User" href="#" class="changeStatusAll" data-value="1">Publish All</a>
         </li>
-        <li><a data-field="publish" data-model="User" href="#" class="changeStatusAll" data-value="1">UnPublish All</a>
+        <li><a data-field="publish" data-model="User" href="#" class="changeStatusAll" data-value="0">UnPublish All</a>
         </li>
     </ul>
     <a class="close-link">
