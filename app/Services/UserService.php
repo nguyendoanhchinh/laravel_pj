@@ -106,6 +106,7 @@ class UserService implements UserServiceInterface
         return $birthday;
     }
     public  function  destroy($id){
+    
         DB::beginTransaction();
         try {
             $user=$this->userRepository->delete($id);
