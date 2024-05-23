@@ -1,4 +1,4 @@
-<form action="{{route('user.index')}}">
+<form action="{{route('user.catalogue.index')}}">
     <div class="filter">
         <div class="us-flex us-flex-middle us-flex-space-between">
             <div class="perpage">
@@ -17,20 +17,17 @@
             <div class="action">
                 <div class="us-flex us-flex-middle">
                     @php
-                        $publishArr=['UnPublish','Publish'];
-                         $publish=request('publish')?:old('publish') ?:'-1';
+                        
+                         $publish=request('publish')?:old('publish') ;
                     @endphp
                     <select name="publish" class="form-control mr10 setupSelect2 ">
-                        <option value="-1" selected="selected">Chọn tình trạng</option>
-                        @foreach($publishArr as  $key=>$val)
+                       
+                        @foreach(config('apps.general.publish') as  $key=>$val)
                             <option {{($publish==$key)? 'selected':''}} value="{{$key}}" >{{$val}}</option>
                         @endforeach
 
                     </select>
-                    <select name="user_catalogue_id" class="form-control mr10 setupSelect2 ">
-                        <option value="0" selected="selected">Chọn nhóm thành viên</option>
-                        <option value="1" >Quản trị viên</option>
-                    </select>
+                    
                     <div class="us-search us-flex us-flex-middle mr10">
                         <div class="input-group">
                             <input type="text"
@@ -42,7 +39,7 @@
                                             </span>
                         </div>
                     </div>
-                    <a href="{{route('user.catalogue.create')}}" class="btn btn-danger"><i class="fa fa-plus"> </i>Thêm mới thành viên</a>
+                    <a href="{{route('user.catalogue.create')}}" class="btn btn-danger"><i class="fa fa-plus"> </i>Thêm mới nhóm thành viên</a>
                 </div>
             </div>
         </div>

@@ -5,8 +5,10 @@
                 <input type="checkbox" value="" id="checkAll" class="input-checkbox ">
             </th>
             <th class="text-center">Tên nhóm thành viên </th>
-            <th class="text-center">Ghi chú</th>
-            <th class="text-center">Chức năng </th>
+            <th class="text-center">Số thành viên</th>
+            <th class="text-center">Mô tả</th>
+            <th class="text-center">Tình trạng </th>
+            <th class="text-center">Thao tác</th>
 
 
         </tr>
@@ -19,12 +21,14 @@
                     <td class="js-switch-{{ $userCatalogue->id }} text-center"> <input type="checkbox"
                             value="{{ $userCatalogue->id }}" id="checkValue" class="input-checkbox checkBoxItem"></td>
                     <td class="text-center">{{ $userCatalogue->name }}</td>
+                    <td class="text-center">{{ $userCatalogue->users_count }}</td>
+          
                     <td class="text-center">{{ $userCatalogue->description }}</td>
 
                     <td class="text-center"> <input type="checkbox" value="{{ $userCatalogue->publish }}"
                             class="js-switch status js-switch-{{ $userCatalogue->id }}" data-field="publish"
-                            data-modelid="{{ $userCatalogue->id }}" data-model="User"
-                            {{ $userCatalogue->publish == 1 ? 'checked' : '' }} /></td>
+                            data-modelid="{{ $userCatalogue->id }}" data-model="UserCatalogue"
+                            {{ $userCatalogue->publish == 2 ? 'checked' : '' }} /></td>
                     <td class="text-center">
                         <a href="{{ route('user.catalogue.edit', $userCatalogue->id) }}" class="btn btn-success"><i
                                 class="fa fa-edit"></i></a>

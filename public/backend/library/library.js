@@ -28,11 +28,16 @@
                 type:'POST',
                 data:option,
                 dataType:'json',
+
                 success:function (res){
-                   console.log(res)
+                    
+                    let inputValue=((option.value== 1) ? 2 : 1);
+                    if(res.flag==true){
+                        _this.val=inputValue
+                    }
                 },
                 error:function (jqXHR,textStatus,errorThrown){
-                    console.log('Lỗi' +textStatus+'' +errorThrown)
+                    console.log('Lỗi ' + textStatus+'' +errorThrown)
                 }
             });
 
@@ -110,11 +115,11 @@
                             
                                
                                     for (let i=0;i<id.length;i++){
-                                        if(option.value==1)
+                                        if(option.value==2)
                                         {
                                             $('.js-switch-'+id[i]).find('span.switchery').attr('style',cssActive1).find('smail').attr('style',cssActive2)
 
-                                        }else if(option.value==0)
+                                        }else if(option.value==1)
                                         {
                         
                                             $('.js-switch-'+id[i]).find('span.switchery').attr('style',cssUnActive).find('smail').attr('style',cssUnActive2)

@@ -4,7 +4,7 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5>{{ $config['seo']['index']['table'] }}</h5>
-                @include('backend.user.catalogue.component.toolbox');
+                @include('backend.dashboard.component.toolbox',['model'=>'UserCatalogue']);
             </div>
             <td class="ibox-content">
                 @include('backend.user.catalogue.component.filter');
