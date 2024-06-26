@@ -1,4 +1,7 @@
-
+@php
+    $segment=request()->segment(1);
+ 
+@endphp
 
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
@@ -27,18 +30,17 @@
             </li>
            
             @foreach (config('apps.module.module') as $key => $val)
-            <li>
-                <a href="">
-                    <i class="{{ $val['icon'] }}"></i>
+            <li class="{{($segment == $val['name']) ? 'active' : ''}}">
+                <a href=""><i class="{{ $val['icon'] }}"></i>
                     <span class="nav-label">{{ $val['title'] }}</span>
                     <span class="fa arrow"></span>
                 </a>
-                @if (isset($val['subModule']))
+                @if(isset($val['subModule']))
                     <ul class="nav nav-second-level">
                         @foreach ($val['subModule'] as $module)
                             <li>
-                                {{-- <a href="{{ ($module['route']) }}">{{ $module['title'] }}</a> --}}
-                                <a href="{{ url($module['route']) }}">{{ $module['title'] }}</a>
+                                <a href="{{ ($module['route']) }}">{{ $module['title'] }}</a>f
+                                {{-- <a href="{{ url($module['route']) }}">{{ $module['title'] }}</a> --}}
                             </li>
                         @endforeach
                     </ul>
